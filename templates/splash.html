@@ -1,4 +1,4 @@
-{% extend 'base.html' %}
+{% extends 'base.html' %}
 {% block body %}
     <div class="container">
         <div class="row">
@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="search-block col-xs-12 col-lg-offset-3 col-lg-6">
-                <form action="/results/offset/1">
+                <form action="/results/1">
                     <input type="text"class="search-field" name="term" placeholder="Enter a term">
                     <input type="submit" value="Search">
                 </form>

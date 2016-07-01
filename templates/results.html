@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block body %}
+        <div class="row">
+            <div class="col-xs-12 col-lg-3 hashtags">
+                <h2>Hashtags</h2>
+                {% for hashtag in hashtags %}
+                    <span class="hashtag">
+                        <a href="/results/1?term={{ hashtag[0] }}">
+                            <p>#{{ hashtag[0] }}</p>
+                        </a>
+                    </span>
+                    <p class="ht-count">{{ hashtag[1] }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-xs-12 col-lg-9 tweets">
+                {% for tweet in tweets %}
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1 tweet">
+                            <a href="/results/1?term={{ tweet['screen_name'] }}">
+                            <h2 class="name">{{ tweet['name'] }}</h2>
+                            <h3 class="user-name">{{ tweet['screen_name'] }}</h3>
+                            </a>
+                            <!--todo build tweet examiner to convert hashtags to link (nice to have/future build)-->
+                            <p class="tweet-body">{{ tweet['text'] }}</p>
+                            <div class="fave">
+                                {% if tweet['fave_count'] == 0 %}
+                                    <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>0</p>
+                                {% else %}
+                                    <p>
+                                        <span class="glyphicon glyphicon-heart faved" aria-hidden="'true"></span>
+                                        <span class="fave-count">{{ tweet['fave_count'] }}</span>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if final != True %}
+                    <form action="/results/{{ offset + 1 }}">
+                        <input type="hidden" name="term" value="{{ query }}">
+                        <input class="more-btn" type="submit" value="Get More Tweets">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}

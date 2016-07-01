@@ -9,21 +9,36 @@
         <link href='https://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
 
         <!--bootstrap-->
-{#        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"#}
-{#              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">#}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <link href="/static/bootstrap.min.js">
-        <link href="/static/bootstrap.min.css">
+{#        <link href="/static/bootstrap.min.css">#}
         <!--local styling-->
         <link rel="stylesheet" href="/static/stylesheet.css">
         <title>Twittiocy!</title>
 
     </head>
     <body>
-        {%  block body %}
-            Body goes here
-        {% endblock %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="title-block col-xs-12 col-lg-offset-2 col-lg-8">
+                    <h1>Welcome to Twittiocy!</h1>
+                    <p class="subtitle">Want to see who's tweeting about what you're interested in?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="search-block col-xs-12 col-lg-offset-3 col-lg-6">
+                    <form action="/results/1">
+                        <input type="text"class="search-field" name="term" placeholder="Enter a term">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            {%  block body %}
+            {% endblock %}
+        </div>
 
-            <script src="/static/twittiocy.js"></script>
+        <script src="/static/twittiocy.js"></script>
     </body>
 </html>
