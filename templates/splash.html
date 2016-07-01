@@ -1,0 +1,19 @@
+{% extend 'base.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="title-block col-xs-12 col-lg-offset-2 col-lg-8">
+                <h1>Welcome to Twittiocy!</h1>
+                <p class="subtitle">Want to see who's tweeting about what you're interested in?</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="search-block col-xs-12 col-lg-offset-3 col-lg-6">
+                <form action="/results/offset/1">
+                    <input type="text"class="search-field" name="term" placeholder="Enter a term">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
