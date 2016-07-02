@@ -40,9 +40,6 @@ def splash():
 def get_more_results(offset):
     query = request.args.get('term')
     tweet = get_tweet(query)
-
-    # skips tweets that have been seen before. May be better/more efficient way to do this, but can't find
-    # offset option within API docs. Using a generator at least memory usage is efficient.
     skip_to_place(offset, tweet)
     tweets = build_tweets(tweet)
     hashtags = sorted_hashtags(make_hts(tweets))
@@ -122,6 +119,9 @@ def sorted_hashtags(hts):
 def skip_to_place(offset, tweet):
     """takes offset integer and skips appropriate number of tweets. Returns generator at appropriate place."""
     to_skip = (offset-1) * 25
+    # iterates through tweet generator until appropriate offset is reached, skipping tweets that have been seen before
+    # May be better/more efficient way to do this, but can't find
+    # offset option within API docs. Since using a generator at least memory usage is efficient.
     while to_skip > 0:
         next(tweet)
         to_skip -= 1
@@ -129,7 +129,7 @@ def skip_to_place(offset, tweet):
 
 
 def last_page(tweets):
-    """check if last page of tweets"""
+    """check if last page of tweets and returns boolean"""
     if len(tweets) > 24:
         return False
     else:
