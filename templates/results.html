@@ -17,8 +17,19 @@
                             <h2 class="name">{{ tweet['name'] }}</h2>
                             <h3 class="user-name">@{{ tweet['screen_name'] }}</h3>
                             </a>
-                            <!--todo build tweet examiner to convert hashtags/urls/users to links (nice to have/future build)-->
-                            <p class="tweet-body">{{ tweet['text'] }}</p>
+                            <p class="tweet-body">
+                                <!--loops through list of tuples in tweet['text'] to construct <p> element
+                                and creates links where appropriate-->
+                                {% for pair in tweet['text'] %}
+                                    {{ pair[0] }}
+                                    {% if pair[1] %}
+                                        <!--use slice in link to strip '#' and '@' from link-->
+                                        <a href="/results/1?term={{ pair[1][1:] }}">{{ pair[1] }}</a>
+                                    {% else %}
+                                        {{ pair[1] }}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
                             <p class="created-at">Tweeted: {{ tweet['created_at'] }}</p>
                             <div class="fave">
                                 {% if tweet['fave_count'] == 0 %}

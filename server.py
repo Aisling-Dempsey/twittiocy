@@ -42,6 +42,7 @@ def get_more_results(offset):
     tweet = get_tweet(query)
     skip_to_place(offset, tweet)
     tweets = build_tweets(tweet)
+    tweets = strip_links(tweets)
     hashtags = sorted_hashtags(make_hts(tweets))
     final = last_page(tweets)
     return render_template('results.html',
@@ -50,7 +51,6 @@ def get_more_results(offset):
                            final=final,
                            offset=offset,
                            query=query)
-
 
 
 #########helper functions########
@@ -64,13 +64,13 @@ api = tweepy.API(auth)
 
 def get_tweet(query):
     """takes search query and returns twitter object"""
-    t = api.search(q=query, count=15000)
+    t = api.search(q=query, count=30000)
     for p in t:
         yield p
 
 
 def build_tweets(t):
-    """constructs array of 25 tweets (less if fewer than 25 left) from tweet generator"""
+    """constructs array of 25 tweet dicts (less if fewer than 25 left) from tweet generator"""
     tweets = []
     while len(tweets) < 25:
         try:
@@ -95,6 +95,39 @@ def build_tweets(t):
 #     tweet.user.name --- str
 #     tweet.user.screen_name --- str
 #     tweet.user.in_reply_to_screen_name ---str
+
+
+def strip_links(tweets):
+    """takes list of constructed tweet dicts and turns text into array of tuples of"""
+    # while this is O(n2), we know the max value for n on the top level is 25, and the bottom is 140 (max chars in a
+    # tweet). Due to the nature of how this function is called (never more than 25 tweets and the constraints on tweets
+    # themselves (140 chars), this is an acceptable choice as it will never scale beyond that.
+
+    for tweet in tweets:
+        stripped = []
+        safe = ''
+        link = ''
+        for word in tweet['text'].split(' '):
+            print word
+            # using slices instead of word[0] avoids index errors when there were two spaces in a row.
+            if word[:1] == '@' or word[:1] == '#':
+                link += word
+                stripped.append((safe, link))
+                safe = ''
+                link = ''
+
+            else:
+                safe += (word + ' ')
+
+        if safe != '':
+            stripped.append((safe, link))
+
+        tweet['text'] = stripped
+    #     leaves ':' on the end of @ mentions, but doesn't appear to effect search functionality. no need to strip.
+    return tweets
+
+
+
 
 
 def make_hts(tweets):

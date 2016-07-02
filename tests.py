@@ -18,9 +18,10 @@ class Testcase(unittest.TestCase):
     def test_build_tweets(self):
         tweet = server.get_tweet('hackbright')
         func = server.build_tweets(tweet)
-        self.assertEqual(type(func), list)
-        self.assertEqual(type(func[0]), dict)
+        self.assertIsInstance(func, list)
+        self.assertIsInstance(func[0], dict)
         self.assertTrue(func[0].get('text'))
+        self.assertIsInstance(func[0]['text'], unicode)
 
     def test_make_hts(self):
         tweet = server.get_tweet('hackbright')
@@ -33,10 +34,15 @@ class Testcase(unittest.TestCase):
         tweets = server.build_tweets(tweet)
         hts = server.make_hts(tweets)
         func = server.sorted_hashtags(hts)
-        self.assertEqual(type(func), list)
-        self.assertEqual(type(func[0]), tuple)
+        self.assertIsInstance(func, list)
+        self.assertIsInstance(func[0], tuple)
 
-
+    def test_strip_links(self):
+        tweet = server.get_tweet('hackbright')
+        tweets = server.build_tweets(tweet)
+        func=server.strip_links(tweets)
+        self.assertIsInstance(func[0]['text'], list)
+        self.assertIsInstance(func[0]['text'][0], tuple)
 
 
 if __name__ == "__main__":
