@@ -1,0 +1,105 @@
+.title-block{
+    text-align: center;
+    font-family: Muli;
+    color: white;
+}
+.search-block {
+    text-align: center;
+    font-family: Muli;
+
+}
+.top-container{
+    background-color: #256C8F;
+
+}
+
+.results{
+    display: flex;
+}
+
+.hashtags{
+    font-family: Muli;
+    background-color: #DFE0D8;
+    height: auto;
+    padding-left: 20px;
+    border-right: 2px solid #597178;
+    box-shadow: 2px 2px 8px #f3f3f3; ;
+
+}
+
+.hashtag{
+    padding-left: 10px;
+}
+
+.name{
+    margin-bottom: 0;
+}
+
+.user-name{
+    margin-top: 5px;
+    font-size: 1em;
+    padding-bottom: 10px;
+}
+
+.hash-title{
+    color:#597178
+}
+
+.created-at{
+    padding-left: 20px;
+    color: #597178;
+}
+
+.tweets{
+    padding-top: 20px;
+
+}
+
+.tweet{
+    font-family: Muli;
+    background-color: #DFE0D8;
+    margin: 10px;
+    border: 2px solid #597178;
+    box-shadow: 2px 2px 8px #f3f3f3;
+    margin-left: 50px;
+}
+
+.hashtag:hover{
+    font-size:130%;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+
+.hash-count{
+    font-weight: bolder;
+}
+
+
+.more-btn{
+    background-color: white;
+    margin-left: 80px;
+    font-family: Muli;
+    border: 2px solid #597178;
+    box-shadow: 2px 2px 8px #f3f3f3;
+}
+
+.more-btn:hover{
+    color:white;
+    background-color: #256C8F;
+}
+
+.search-btn{
+    color:white;
+    background-color: #256C8F;
+    border: 2px solid white;
+    -webkit-appearance: none;
+}
+
+.search-btn:hover{
+    color: #256C8F;
+    background-color: white;
+
+}

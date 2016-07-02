@@ -5,8 +5,6 @@
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"
                 integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 
-        <!--font-->
-        <link href='https://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
 
         <!--bootstrap-->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
@@ -14,13 +12,18 @@
 
         <link href="/static/bootstrap.min.js">
 {#        <link href="/static/bootstrap.min.css">#}
+
+        <!--font-->
+        <link href='https://fonts.googleapis.com/css?family=Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
+
         <!--local styling-->
         <link rel="stylesheet" href="/static/stylesheet.css">
+
         <title>Twittiocy!</title>
 
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid top-container">
             <div class="row">
                 <div class="title-block col-xs-12 col-lg-offset-2 col-lg-8">
                     <h1>Welcome to Twittiocy!</h1>
@@ -30,15 +33,15 @@
             <div class="row">
                 <div class="search-block col-xs-12 col-lg-offset-3 col-lg-6">
                     <form action="/results/1">
-                        <input type="text"class="search-field" name="term" placeholder="Enter a term">
-                        <input type="submit" value="Search">
+                        <input type="text"class="search-field" name="term" placeholder="Enter a term" required>
+                        <input class="search-btn" type="submit" value="Search">
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="container-fluid">
             {%  block body %}
             {% endblock %}
         </div>
-
-        <script src="/static/twittiocy.js"></script>
     </body>
 </html>

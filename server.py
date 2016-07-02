@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
+from datetime import datetime
 import tweepy
 # import os
 
@@ -78,7 +79,7 @@ def build_tweets(t):
         try:
             tweet = next(t)
             tweet_info = {
-                'created_at': tweet.created_at,
+                'created_at': tweet.created_at.strftime("%B %d, %Y - %I:%M %p "),
                 'hashtags': tweet.entities['hashtags'],
                 'text': tweet.text,
                 'name': tweet.user.name,
@@ -137,7 +138,7 @@ def last_page(tweets):
 
 if __name__ == '__main__':
     # toggles debug mode on
-    app.debug = True
+    # app.debug = True
 
     # runs debug toolbar
     DebugToolbarExtension(app)
