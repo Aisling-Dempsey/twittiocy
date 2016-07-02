@@ -88,13 +88,13 @@ def build_tweets(t):
             break
     return tweets
 
-#     created_at --- datetime.datetime
-#     entities['hashtags'] --- array
-#     favorite_count ---  int
-#     text --- str
-#     user.name --- str
-#     user.screen_name --- str
-#     user.in_reply_to_screen_name ---str
+#     tweet.created_at --- datetime.datetime
+#     tweet.entities['hashtags'] --- array
+#     tweet.favorite_count ---  int
+#     tweet.text --- str
+#     tweet.user.name --- str
+#     tweet.user.screen_name --- str
+#     tweet.user.in_reply_to_screen_name ---str
 
 
 def make_hts(tweets):
