@@ -2,14 +2,7 @@ import unittest
 import server
 
 
-
 class Testcase(unittest.TestCase):
-
-    def setUp(self):
-        tweet = server.get_tweet('hackbright')
-        tweets = server.build_tweets(tweet)
-        hts = server.make_hts(tweets)
-
 
     def test_get_tweet(self):
         func = server.get_tweet('hackbright')
